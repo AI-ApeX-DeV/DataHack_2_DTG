@@ -1,0 +1,12 @@
+import gender_guesser.detector as gender
+
+def predict_gender(name):
+    d = gender.Detector()
+    gender_prediction = d.get_gender(name)
+    return gender_prediction
+
+# Example usage:
+name = "Anay"
+gender_prediction = predict_gender(name)
+print(f"The predicted gender for {name} is {gender_prediction}")
+
