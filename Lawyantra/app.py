@@ -10,7 +10,6 @@ from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 from langchain.llms import HuggingFaceHub
 
-
 def get_pdf_text(pdf_docs):
     text = "These are the case categories:- Corporate Law, Consumer Protection Law, Labor Law, Intellectual Property Law, Criminal Law, Tax Law,Human Rights Law, Civil Law, Family Law,Family Law, Constitutional Law, Consumer Protection Law,Constitutional Law, Criminal Law, Consumer Protection Law,Intellectual Property Law, Environmental Law, Real Estate Law"
     for pdf in pdf_docs:

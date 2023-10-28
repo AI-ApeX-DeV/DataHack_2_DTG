@@ -1,0 +1,41 @@
+# Import the modules
+import re
+import pandas as pd
+import numpy as np
+
+# Read the original dataset
+df = pd.read_csv('extracted_data15.csv')
+print("unique values in sector")
+sector = df['sector'].unique()
+print(sector)
+print("unique values in experience")
+experience = df['experience'].unique()
+print(experience)
+print("unique values in feedback")
+feedback = df['feedback'].unique()
+print(feedback)
+print("unique values in jurisdiction")
+jurisdiction = df['jurisdiction'].unique()
+print(jurisdiction)
+print("unique values in charges")
+charges = df['charges'].unique()
+print(charges)
+print("unique values in days of disposal")
+days_of_disposal = df['days of disposal'].unique()
+print(days_of_disposal)
+print("unique values in language")
+language = df['language'].unique()
+print(language)
+print("unique values in practices")
+practices = df['practices'].unique()
+print(practices)
+print("unique values in city of practice")
+city_of_practice = df['city of practice'].unique()
+print(city_of_practice)
+print("unique values in pro bono service provided")
+pro_bono_service_provided = df['pro bono service provided'].unique()
+print(pro_bono_service_provided)
+print("unique values in client demographics")
+client_demo = df['client demographics'].unique()
+print(client_demo)
+
