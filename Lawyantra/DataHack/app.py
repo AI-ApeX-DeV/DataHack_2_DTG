@@ -1,24 +1,3 @@
-# from langchain.document_loaders import CSVLoader
-# from langchain.indexes import VectorstoreIndexCreator
-# from langchain.chains import RetrievalQA
-# from langchain.llms import OpenAI
-# import os
-# import pickle
-
-# os.environ["openai_api_key"] = "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"
-
-# loader = CSVLoader(file_path='lawyer_data.csv')
-
-# index_creator = VectorstoreIndexCreator()
-# docsearch = index_creator.from_loaders([loader])
-
-# chain = RetrievalQA.from_chain_type(llm=OpenAI(), chain_type="stuff", retriever=docsearch.vectorstore.as_retriever(), input_key="question")
-
-# query="Two brothers were tenant of a landlord in a commercial property.One brother had one son and adaughter (both minor) when he got divorced with his wife.The children's went into mother's custody at thetime of divorce and after some years the husband (co tenant) also died. Now can the children of thedeceased brother(co tenant) claim the right. which lawyer should be helpful for me?"
-# response =  chain({"question":query})
-
-# print(response['result'])
-
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -43,11 +22,10 @@ from langchain.llms import HuggingFaceHub
 st.set_page_config(page_title='Chat with Case papers', page_icon=":books:")
 
 # Set your OpenAI API key
-os.environ["openai_api_key"] = "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"
+os.environ["openai_api_key"] = "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"
 
-    # Define a function for the Home page
 def home_page():
-    st.title("Home Page")
+    st.title("LawYantra")
     st.write("Welcome to the Home Page.")
     st.title("Online Lawyer Recommendation")
     st.write("Enter your legal question to get a response.")
@@ -58,7 +36,7 @@ def home_page():
     
     user_input = st.text_area("Enter your legal question:")
     
-    def chain_loader():
+    if st.button("Search"):
         loader = CSVLoader(file_path='PS_2_Test_Dataset.csv')
 
         index_creator = VectorstoreIndexCreator()
@@ -66,16 +44,11 @@ def home_page():
 
         chain = RetrievalQA.from_chain_type(llm=OpenAI(), chain_type="stuff", retriever=docsearch.vectorstore.as_retriever(), input_key="question")
 
-        return chain
-
-    def executer(chain):
-        query=user_input
-        text="tell me  to opt for and some detials of the lawyer and why he/she will be best for the case, give the list of 10 best lawyers for case in equal gender proportion "
-        response =  chain({"question":query+text})
-        return response['result']
-
-    chain = chain_loader()
-    print(executer(chain))
+    
+        query = user_input  # Get user input from the text area
+        text = "Recommend me the best suitable lawyers to opt for this case and some details of the lawyer."
+        response = chain({"question": query + text})
+        st.write(response['result'])
 
     df = pd.read_csv('lawyer_data.csv')
 
@@ -133,8 +106,8 @@ def home_page():
 
 # Define a function for Page 1
 def page_1():
-    st.title("Page 1")
-    st.write("This is Page 1.")
+    st.title("Lawyer Dashboard")
+    st.write("This is Lawyer Dashboad.")
         
     # Read the CSV file
     Df = pd.read_csv('vis_lawyer_data.csv')
@@ -215,8 +188,8 @@ def page_1():
 
 # Define a function for Page 2
 def page_2():
-    st.title("Page 2")
-    st.write("This is Page 2.")
+    st.title("Study case papers")
+    st.write("Study your case papers.")
     def get_pdf_text(pdf_docs):
         text = "These are the case categories:- Corporate Law, Consumer Protection Law, Labor Law, Intellectual Property Law, Criminal Law, Tax Law,Human Rights Law, Civil Law, Family Law,Family Law, Constitutional Law, Consumer Protection Law,Constitutional Law, Criminal Law, Consumer Protection Law,Intellectual Property Law, Environmental Law, Real Estate Law"
         for pdf in pdf_docs:
@@ -311,9 +284,3 @@ elif page == "Page 1":
     page_1()
 elif page == "Page 2":
     page_2()
-
-
-
-
-
-    

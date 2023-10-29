@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import streamlit as st 
+import streamlit_learning as st 
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from goose3 import Goose
 import plotly.express as px 
